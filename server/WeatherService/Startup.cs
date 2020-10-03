@@ -1,3 +1,8 @@
+//-----------------------------------------------------------------------------
+// FILE:	    Startup.cs
+// CONTRIBUTOR: Ian White
+// COPYRIGHT:   MIT
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +13,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace WeatherService
 {
@@ -24,6 +30,8 @@ namespace WeatherService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers().AddNewtonsoftJson();
+            services.AddHttpClient("openWeatherClient", c => c.BaseAddress = new Uri("https://api.openweathermap.org/"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +58,7 @@ namespace WeatherService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

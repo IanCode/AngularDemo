@@ -1,5 +1,12 @@
+//-----------------------------------------------------------------------------
+// FILE:	    Program.cs
+// CONTRIBUTOR: Ian White
+// COPYRIGHT:   MIT
+
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +21,7 @@ namespace WeatherService
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
