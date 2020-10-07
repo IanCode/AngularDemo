@@ -1,10 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherDataService {
 
-  constructor(private client: HttpClient) { }
+  private weatherBaseUrl = 'https://localhost:5001/Weather/data';
+
+  constructor(private client: HttpClient){
+    
+  }
+
+  getWeatherData(): Observable<string> {
+    var poop = this.client.get<string>(this.weatherBaseUrl);
+    return poop;
+  }
 }
